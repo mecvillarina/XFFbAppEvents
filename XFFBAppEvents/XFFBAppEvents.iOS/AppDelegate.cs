@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using Facebook.CoreKit;
+using Foundation;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -23,6 +24,8 @@ namespace XFFBAppEvents.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
+
+            AppEvents.LogEvent("test_mark_ios");
 
             return base.FinishedLaunching(app, options);
         }
