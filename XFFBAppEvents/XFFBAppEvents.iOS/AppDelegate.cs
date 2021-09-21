@@ -22,12 +22,21 @@ namespace XFFBAppEvents.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Settings.EnableLoggingBehavior(LoggingBehavior.AppEvents);
+            Settings.EnableLoggingBehavior(LoggingBehavior.NetworkRequests);
+            Settings.EnableLoggingBehavior(LoggingBehavior.GraphAPIDebugInfo);
+            Settings.EnableLoggingBehavior(LoggingBehavior.DeveloperErrors);
+            Settings.EnableLoggingBehavior(LoggingBehavior.AccessTokens);
+
+            Settings.AutoLogAppEventsEnabled = true;
+            Settings.AdvertiserTrackingEnabled = true;
+            Settings.AdvertiserIdCollectionEnabled = true;
+            
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
-            AppEvents.LogEvent("test_mark_ios");
-
-            return base.FinishedLaunching(app, options);
+            return ApplicationDelegate.SharedInstance.FinishedLaunching(app, options);
+            //return base.FinishedLaunching(app, options);
         }
     }
 
